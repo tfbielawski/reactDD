@@ -1,24 +1,52 @@
-import logo from './logo.svg';
+import React, {useState, useEffect} from "react";
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import {Container, Dimmer, Loader} from "semantic-ui-react";
 import './App.css';
+import Navbar from "./components/Navbar";
+import Home from "./components/Home";
+import Monster from "./components/Monster";
+import axios from "axios";
+//import Planets from "./components/Planets";
 
+//Main function definition
 function App() {
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+        <Router>
+           {/* Render the NavBar component here */}
+           <Navbar/>
+            <Container>
+                {/*Ternary Loading indicator. If loading is true...*/}
+                {loading ? (
+                    //Show the loading screen
+                    <Dimmer active inverted>
+                        <Loader inverted > LOADING...</Loader>
+                    </Dimmer>)
+                    //Else, access the switch
+                    : (
+                        <Switch>
+                            {/*Route to home component*/}
+                            <Route exact path = "/">
+                                <Home/>
+                            </Route>
+                            {/*Route to people component,pass in people as props*/}
+                            <Route exact path = "/monster">
+                                {/*<Monster data = {monster}/>*/}
+                                <Monster />
+                            </Route>
+                            {/*Route to planets component*/}
+                            {/*<Route exact path = "/planets">*/}
+                            {/*    <Planets data = {planets}/>*/}
+                            {/*</Route>*/}
+                    </Switch>
+                ) }
+
+            </Container>
+       </Router>
+    </>
   );
 }
 

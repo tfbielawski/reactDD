@@ -1,7 +1,16 @@
+
 .App {
+  background-image: url("stars.jpg");
   text-align: center;
 }
 
+body{
+  background-image: url("stars.jpg");
+}
+
+Card{
+  background: aqua;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
