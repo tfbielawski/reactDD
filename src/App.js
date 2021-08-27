@@ -10,15 +10,14 @@ import axios from "axios";
 
 //Main function definition
 function App() {
-    //declare  and init state
+    //declare and init state
     const [monster, setMonster] = useState([]);
     const [monster2, setMonster2] = useState([]);
-    //const [planets, setPlanets] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() =>  {
         //Axios gets data from the url
-        axios.get("https://www.dnd5eapi.co/api/monsters/")
+        axios.get("https://www.dnd5eapi.co/api/monsters/troll")
             .then(res =>  {
                 //Invoke setData() to set the data
                 setMonster(res.data.results);
@@ -65,7 +64,7 @@ function App() {
                             </Route>
                             {/*Route to people component,pass in people as props*/}
                             <Route exact path = "/monster">
-                                <Monster data = {monster}/>
+                                <Monster monster = {monster}/>
                             </Route>
                             {/*Route to planets component*/}
                             {/*<Route exact path = "/planets">*/}
