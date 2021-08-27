@@ -12,7 +12,6 @@ import axios from "axios";
 function App() {
     //declare and init state
     const [monster, setMonster] = useState([]);
-    const [monster2, setMonster2] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() =>  {
@@ -20,8 +19,8 @@ function App() {
         axios.get("https://www.dnd5eapi.co/api/monsters/troll")
             .then(res =>  {
                 //Invoke setData() to set the data
-                setMonster(res.data.results);
-                //console.log("MONSTER.RESULTS", res.data.results)
+                setMonster(res.data);
+                console.log("MONSTER.RESULTS", res.data)
                 //Set loading to false
                 setLoading(false);
                 //Generate a random number to randomly choose a monster
@@ -64,7 +63,7 @@ function App() {
                             </Route>
                             {/*Route to people component,pass in people as props*/}
                             <Route exact path = "/monster">
-                                <Monster monster = {monster}/>
+                                <Monster data= {monster}/>
                             </Route>
                             {/*Route to planets component*/}
                             {/*<Route exact path = "/planets">*/}

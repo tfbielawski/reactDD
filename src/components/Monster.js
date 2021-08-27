@@ -2,9 +2,9 @@ import React from "react";
 import {Card, Grid} from "semantic-ui-react";
 
 //People function definition, pass in data from App.js
-export default function Monster( monster) {
+export default function Monster( data) {
 
-   // console.log("MON JS", monster);
+   console.log("MON JS", data);
     return (
         <>
             <h1> Monster </h1>
@@ -40,14 +40,19 @@ export default function Monster( monster) {
                             <Card>
                                 {/*Add comments for each card type*/}
                                 <Card.Content>
-                                    <Card.Header>{monster.name}</Card.Header>
+                                    <Card.Header>{data.data.name}</Card.Header>
                                     <Card.Description>
                                         <strong>ALIGNMENT</strong>
-                                        <p>{monster.alignment}</p>
+                                        <p>{data.data.alignment}</p>
                                         <strong>TYPE</strong>
-                                        <p>{monster.type}</p>
+                                        <p>{data.data.type}</p>
                                         <strong>SIZE</strong>
-                                        <p>{monster.size}</p>
+                                        <p>{data.data.size}</p>
+                                        <strong>SPECIAL ABILITIES</strong>
+                                        {data.data.special_abilities.map((sa,i) => {
+                                            return <p> {sa.name} </p>,
+                                            <p>{sa.desc}</p>
+                                        })}
                                     </Card.Description>
                                 </Card.Content>
                             </Card>
