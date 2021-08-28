@@ -16,23 +16,27 @@ function App() {
 
     useEffect(() =>  {
         //Axios gets data from the url
-        axios.get("https://www.dnd5eapi.co/api/monsters/troll")
+
+
+        axios.get("https://www.dnd5eapi.co/api/monsters/")
             .then(res =>  {
                 //Invoke setData() to set the data
-                setMonster(res.data);
-                console.log("MONSTER.RESULTS", res.data)
-                //Set loading to false
-                setLoading(false);
+                setMonster(res.data.results);
+                console.log("MONSTER.RESULTS", res.data.results)
                 //Generate a random number to randomly choose a monster
-                //var randomNumber = Math.floor(Math.random() * 330);
+                var randomNumber = Math.floor(Math.random() * 330);
                 //Assign the index to a variable
-               // const monsterName = res.data.results[`${randomNumber}`].index;
-                // console.log("random", res.data.results[`${randomNumber}`]);
-                // console.log("index", res.data.results[`${randomNumber}`].index);
-                // axios.get(`https://www.dnd5eapi.co/api/monsters/${monsterName}`)
-                //     .then(res => {
-                //         setLoading(false);
-                //         setMonster(res.data.results);})
+                const monsterName = res.data.results[`${randomNumber}`].index;
+
+                axios.get(`https://www.dnd5eapi.co/api/monsters/${monsterName}`)
+                    .then( res => {
+                        console.log("AXIOS 2: ", res.data)
+                        setMonster(res.data)
+                        //Set loading to false
+                        setLoading(false);
+                    })
+
+
             })
 
             //Catch() function
