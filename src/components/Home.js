@@ -5,7 +5,7 @@ export default function Home() {
     return (
 
         <div>
-            <p>WELCOME TO THE D&D MONSTER GENERATOR</p>
+            <p>WELCOME TO THE D&D API APPLICATION</p>
             <button > GET MONSTER </button>
         </div>
     )

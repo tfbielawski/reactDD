@@ -6,18 +6,20 @@ import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Monster from "./components/Monster";
 import axios from "axios";
-//import Planets from "./components/Planets";
+import Classes from "./components/Classes";
 
 //Main function definition
 function App() {
-    //declare and init state
+    //declare and init monster state
     const [monster, setMonster] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    //Declare and init character classes state
+    const [classes, setClasses] = useState([]);
+    const [classesLoading, setClassesLoading] = useState(true);
+
     useEffect(() =>  {
-        //Axios gets data from the url
-
-
+        //Axios gets monster data from the api
         axios.get("https://www.dnd5eapi.co/api/monsters/")
             .then(res =>  {
                 //Invoke setData() to set the data
@@ -35,16 +37,43 @@ function App() {
                         //Set loading to false
                         setLoading(false);
                     })
-
-
             })
 
             //Catch() function
             .catch(err => console.log("There was an error. Fix your code!" + err))
 
+        //Axios gets character class data from the api
         //empty array to prevent infinite calls
     }, [])
 
+    //useEffect to call classes
+    useEffect(() =>  {
+        //Axios gets monster data from the api
+        axios.get("https://www.dnd5eapi.co/api/classes/")
+            .then(res =>  {
+                //Invoke setData() to set the data
+                setClasses(res.data.results);
+                console.log("CLASSES.RESULTS", res.data.results)
+                //Generate a random number to randomly choose a monster
+                var randomNumber = Math.floor(Math.random() * 12);
+                //Assign the index to a variable
+                const classesName = res.data.results[`${randomNumber}`].index;
+                console.log("CLASSES.INDEX", res.data.results[`${randomNumber}`].index)
+                axios.get(`https://www.dnd5eapi.co/api/classes/${classesName}`)
+                    .then( res => {
+                        console.log("AXIOS 2classes: ", res.data)
+                        setClasses(res.data)
+                        //Set loading to false
+                        setLoading(false);
+                    })
+            })
+
+            //Catch() function
+            .catch(err => console.log("There was an error. Fix your code!" + err))
+
+        //Axios gets character class data from the api
+        //empty array to prevent infinite calls
+    }, [])
 
   return (
     <>
@@ -65,17 +94,16 @@ function App() {
                             <Route exact path = "/">
                                 <Home/>
                             </Route>
-                            {/*Route to people component,pass in people as props*/}
+                            {/*Route to people component,pass in classes as props*/}
                             <Route exact path = "/monster">
                                 <Monster data= {monster}/>
                             </Route>
-                            {/*Route to planets component*/}
-                            {/*<Route exact path = "/planets">*/}
-                            {/*    <Planets data = {planets}/>*/}
-                            {/*</Route>*/}
+                            {/*Route to classes component*/}
+                            <Route exact path = "/classes">
+                                <Classes data = {classes}/>
+                            </Route>
                     </Switch>
                 ) }
-
             </Container>
        </Router>
     </>

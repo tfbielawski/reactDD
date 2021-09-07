@@ -17,10 +17,10 @@ export default function Navbar() {
                 <Link to= "/monster">
                     <Menu.Item name = "Monster Generator"></Menu.Item>
                 </Link>
-                {/*Link to planets*/}
-                {/*<Link to = "/planets">*/}
-                {/*    <Menu.Item name = "Planets"></Menu.Item>*/}
-                {/*</Link>*/}
+                {/*Link to classes*/}
+                <Link to = "/classes">
+                    <Menu.Item name = "Classes"></Menu.Item>
+                </Link>
             </Container>
         </Menu>
     )

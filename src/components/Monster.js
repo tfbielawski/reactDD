@@ -8,31 +8,6 @@ export default function Monster( data) {
     return (
         <>
             <h1> Monster </h1>
-            {/* Set the display grid */}
-            {/*<Grid columns = {3}>*/}
-            {/*    /!* Map over data passed in from App.js*/}
-            {/*       For each monster in data, return a grid card*!/*/}
-            {/*    {data.map((monster, i) => {*/}
-            {/*        return (*/}
-            {/*            <Grid.Column key = {i}>*/}
-            {/*                <Card>*/}
-            {/*                    /!*Add comments for each card type*!/*/}
-            {/*                    <Card.Content>*/}
-            {/*                        <Card.Header>{monster.name}</Card.Header>*/}
-            {/*                        <Card.Description>*/}
-            {/*                            <strong>ALIGNMENT</strong>*/}
-            {/*                            <p>{monster.alignment}</p>*/}
-            {/*                            <strong>TYPE</strong>*/}
-            {/*                            <p>{monster.type}</p>*/}
-            {/*                            <strong>SIZE</strong>*/}
-            {/*                            <p>{monster.size}</p>*/}
-            {/*                        </Card.Description>*/}
-            {/*                    </Card.Content>*/}
-            {/*                </Card>*/}
-            {/*            </Grid.Column>*/}
-            {/*        )*/}
-            {/*    })}*/}
-            {/*</Grid>*/}
             <Grid columns = {3}>
                 {/* Map over data passed in from App.js
                    For each monster in data, return a grid card*/}
@@ -49,6 +24,7 @@ export default function Monster( data) {
                                         <strong>SIZE</strong>
                                         <p>{data.data.size}</p>
                                         <strong>SPECIAL ABILITIES</strong>
+                                        {/*Map over special abilities array, populate*/}
                                         {data.data.special_abilities.map((sa,i) => {
                                             return <p> {sa.name} </p>,
                                             <p>{sa.desc}</p>
